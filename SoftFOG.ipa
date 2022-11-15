@@ -1,0 +1,11 @@
+1: support invoke any C/C++/Objective-C function (without jailbroken)
+
+2: support hook any module's Objective-C method (without jailbroken)
+
+3: support hook any module's C/C++ exprot function (without jailbroken)
+
+4: support hook any module's C/C++ internal function/instruction (jailbroken only)
+
+5: support inline-hook app-module's C/C++ function/instruction (without jailbroken)
+
+6: support code-patch (patch-offset) with bytes dynamically (without jailbroken)
