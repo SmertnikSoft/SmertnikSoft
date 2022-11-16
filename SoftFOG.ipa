@@ -9,3 +9,248 @@
 5: support inline-hook app-module's C/C++ function/instruction (without jailbroken)
 
 6: support code-patch (patch-offset) with bytes dynamically (without jailbroken)
+.
+Split Unified
+    2  
+Index-en.html
+ 
+@@ -1,876 +1,876 @@
+<html>		<html>
+<head>		<head>
+<title>H5GG</title>		<title>H5GG</title>
+<!--设置手机显示模式, 填满宽度,原尺寸显示,禁止双指缩放-->		<!--设置手机显示模式, 填满宽度,原尺寸显示,禁止双指缩放-->
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />		<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!--CSS外观样式表-->		<!--CSS外观样式表-->
+<style>		<style>
+html {		html {
+    zoom:1.2; /*在手机上显示整体放大1.2倍*/		    zoom:1.2; /*在手机上显示整体放大1.2倍*/
+}		}
+body {		body {
+    width: 100%;		    width: 100%;
+    height: 100%;		    height: 100%;
+    background-color: rgba(255,255,255,0.8);		    background-color: rgba(255,255,255,0.8);
+}		}
+* {		* {
+    /*默认文字颜色*/		    /*默认文字颜色*/
+    color: #000;		    color: #000;
+    font-size: 12px;		    font-size: 12px;
+    font-family: Arial, sans-serif;		    font-family: Arial, sans-serif;
+    		    
+   -webkit-tap-highlight-color: transparent;		   -webkit-tap-highlight-color: transparent;
+   outline: none;		   outline: none;
+    		    
+    /*默认布局边框:灰色虚线, 开启这个方便查看布局*/		    /*默认布局边框:灰色虚线, 开启这个方便查看布局*/
+    /*/		    /*/
+     border: 1px dashed gray;/**/		     border: 1px dashed gray;/**/
+    		    
+}		}
+*:not(input,checkbox,textarea) {		*:not(input,checkbox,textarea) {
+    /*禁止文本选择*/		    /*禁止文本选择*/
+   -webkit-touch-callout: none;		   -webkit-touch-callout: none;
+   -webkit-user-select: none;		   -webkit-user-select: none;
+   user-select: none; /* Non-prefixed version, currently */		   user-select: none; /* Non-prefixed version, currently */
+}		}
+input {		input {
+    background-color: rgba(0,0,0,0);		    background-color: rgba(0,0,0,0);
+    height: 25px;		    height: 25px;
+}		}
+button {		button {
+    height: 28px;		    height: 28px;
+    color: #3393EF;		    color: #3393EF;
+    background-color: #84848450;		    background-color: #84848450;
+    display: inline-block;		    display: inline-block;
+    cursor: pointer;		    cursor: pointer;
+    text-align: center;		    text-align: center;
+    text-decoration: none;		    text-decoration: none;
+    outline: none;		    outline: none;
+    border: none;		    border: none;
+    border-radius: 5px;		    border-radius: 5px;
+    padding: 0 2px;		    padding: 0 2px;
+    margin: 2px;		    margin: 2px;
+}		}
+button:active {		button:active {
+    background-color: #fff;		    background-color: #fff;
+    transform: translateY(2px);		    transform: translateY(2px);
+}		}
+input[type=radio]  {		input[type=radio]  {
+    width:16px;		    width:16px;
+    height:16px;		    height:16px;
+    margin-right:6px;		    margin-right:6px;
+    border:none;		    border:none;
+    outline-style:none;		    outline-style:none;
+    -webkit-appearance:none;		    -webkit-appearance:none;
+    vertical-align:middle;		    vertical-align:middle;
+    border:1px solid #686868F0;		    border:1px solid #686868F0;
+    border-radius:50%;		    border-radius:50%;
+    margin:6px 2px;		    margin:6px 2px;
+}		}
+input[type=radio]:checked {		input[type=radio]:checked {
+    border:5px solid #2F7DCDF0;		    border:5px solid #2F7DCDF0;
+    background:#E8E8E8;		    background:#E8E8E8;
+}		}
+    		    
+input[type=checkbox]{		input[type=checkbox]{
+ visibility: hidden;		 visibility: hidden;
+ vertical-align:middle; margin-bottom:2px;		 vertical-align:middle; margin-bottom:2px;
+ cursor: pointer;		 cursor: pointer;
+ position: relative;		 position: relative;
+ width: 24px;		 width: 24px;
+ height: 24px;		 height: 24px;
+}		}
+input[type=checkbox]::after{		input[type=checkbox]::after{
+ position: absolute;		 position: absolute;
+ top: 0;		 top: 0;
+ margin-top:2px;		 margin-top:2px;
+ width: 14px; height: 14px;		 width: 14px; height: 14px;
+ border: 1px solid #686868;		 border: 1px solid #686868;
+ border-radius: 3px;		 border-radius: 3px;
+ background-color: rgba(0,0,0,0);		 background-color: rgba(0,0,0,0);
+ display: inline-block;		 display: inline-block;
+ visibility: visible;		 visibility: visible;
+ text-align: center;		 text-align: center;
+ content: ' ';		 content: ' ';
+}		}
+input[type=checkbox]:checked::after{		input[type=checkbox]:checked::after{
+ content: "✓";		 content: "✓";
+ color: #FFF;		 color: #FFF;
+ border-color: #B8B8B8;		 border-color: #B8B8B8;
+ background-color: #4498F7;		 background-color: #4498F7;
+ font-size: 12px;		 font-size: 12px;
+ font-weight: bold;		 font-weight: bold;
+}		}
+input[type=range] {		input[type=range] {
+  -webkit-appearance: none;		  -webkit-appearance: none;
+}		}
+input[type=range]:focus {		input[type=range]:focus {
+  outline: none;		  outline: none;
+}		}
+input[type=range]::-webkit-slider-runnable-track {		input[type=range]::-webkit-slider-runnable-track {
+  height: 15px;		  height: 15px;
+  cursor: pointer;		  cursor: pointer;
+  animate: 0.2s;		  animate: 0.2s;
+  background: #68686830;		  background: #68686830;
+  border-radius: 1.3px;		  border-radius: 1.3px;
+  border: 0.2px solid #010101;		  border: 0.2px solid #010101;
+}		}
+input[type=range]::-webkit-slider-thumb {		input[type=range]::-webkit-slider-thumb {
+  border: 1px solid #000000;		  border: 1px solid #000000;
+  height: 18px;		  height: 18px;
+  width: 16px;		  width: 16px;
+  border-radius: 3px;		  border-radius: 3px;
+  background: #EEEEEEE0;		  background: #EEEEEEE0;
+  cursor: pointer;		  cursor: pointer;
+  -webkit-appearance: none;		  -webkit-appearance: none;
+  margin-top: -2px;		  margin-top: -2px;
+}		}
+input[type=range]:focus::-webkit-slider-runnable-track {		input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #367ebd;		  background: #367ebd;
+}		}
+.menubox {		.menubox {
+    display: inline;		    display: inline;
+    padding: 5px;		    padding: 5px;
+    width: 300px;		    width: 300px;
+    height: 20px;		    height: 20px;
+    line-height: 20px; /*height和line-height设置一样即可文字垂直居中*/		    line-height: 20px; /*height和line-height设置一样即可文字垂直居中*/
+    text-align:center;		    text-align:center;
+    background-color: #E8E8E890;		    background-color: #E8E8E890;
+    border-radius: 5px;		    border-radius: 5px;
+}		}
+.menubox.current {		.menubox.current {
+    color: #E8E8E8;		    color: #E8E8E8;
+    background-color: #848484;		    background-color: #848484;
+}		}
+.menuview {		.menuview {
+    display:none;		    display:none;
+}		}
+.menuview.current {		.menuview.current {
+    display:block;		    display:block;
+    overflow-x: hidden;		    overflow-x: hidden;
+    overflow-y: auto;		    overflow-y: auto;
+}		}
+    		    
+/* 滚动条整体部分 */		/* 滚动条整体部分 */
+.scrollbar {		.scrollbar {
+    overflow-x: hidden;		    overflow-x: hidden;
+    overflow-y: auto;		    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;		    -webkit-overflow-scrolling: touch;
+}		}
+.scrollbar::-webkit-scrollbar {		.scrollbar::-webkit-scrollbar {
+    width: 5px; /* 纵向滚动条宽度 */		    width: 5px; /* 纵向滚动条宽度 */
+    height: 5px;/* 横向滚动条高度 */		    height: 5px;/* 横向滚动条高度 */
+    background-color: #F5F5F5; /* 滚动条整体背景，一般被覆盖着 */		    background-color: #F5F5F5; /* 滚动条整体背景，一般被覆盖着 */
+}		}
+/* 滚动条的轨道（里面装有Thumb） */		/* 滚动条的轨道（里面装有Thumb） */
+.scrollbar::-webkit-scrollbar-track {		.scrollbar::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); /* 滚动条轨道阴影 */		    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); /* 滚动条轨道阴影 */
+    /*border-radius: 10px; /* 滚动条轨道圆角 */		    /*border-radius: 10px; /* 滚动条轨道圆角 */
+    background-color: #F5F5F5; /* 滚动条轨道背景 */		    background-color: #F5F5F5; /* 滚动条轨道背景 */
+}		}
+/* 滚动条里面的滑块 */		/* 滚动条里面的滑块 */
+.scrollbar::-webkit-scrollbar-thumb {		.scrollbar::-webkit-scrollbar-thumb {
+    border-radius: 15px; /* 滚动条滑块圆角 */		    border-radius: 15px; /* 滚动条滑块圆角 */
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3); /* 滚动条滑块阴影 */		    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3); /* 滚动条滑块阴影 */
+    background-color: #B8B8B8; /* 滚动条滑块颜色 */		    background-color: #B8B8B8; /* 滚动条滑块颜色 */
+}		}
+.popup_container {		.popup_container {
+    position:absolute;		    position:absolute;
+    z-index: 1000;		    z-index: 1000;
+    left:50%;		    left:50%;
+    top:0;		    top:0;
+}		}
+    		    
+#popup_search_edit {		#popup_search_edit {
+    display:none;		    display:none;
+    text-align: center;		    text-align: center;
+    background-color: #FDFDFD;		    background-color: #FDFDFD;
+    width:200px;		    width:200px;
+    height:150px;		    height:150px;
+    position:absolute;		    position:absolute;
+    left:-100px; top:50px;		    left:-100px; top:50px;
+    border:1px solid #B8B8B880;		    border:1px solid #B8B8B880;
+    border-radius: 5px;		    border-radius: 5px;
+    padding: 10px;		    padding: 10px;
+}		}
+    		    
+#popup_progress {		#popup_progress {
+    display:none;		    display:none;
+    text-align: center;		    text-align: center;
+    background-color: #FDFDFD;		    background-color: #FDFDFD;
+    width:200px;		    width:200px;
+    height:20px;		    height:20px;
+    position:absolute;		    position:absolute;
+    left:-100px; top:100px;		    left:-100px; top:100px;
+    border:1px solid #B8B8B880;		    border:1px solid #B8B8B880;
+    border-radius: 5px;		    border-radius: 5px;
+    padding: 10px;		    padding: 10px;
+    z-index: 2000;		    z-index: 2000;
+}		}
+    		    
+#popup_loadscripts {		#popup_loadscripts {
+    display:none;		    display:none;
+    text-align: center;		    text-align: center;
+    background-color: #FDFDFD;		    background-color: #FDFDFD;
+    width:250px;		    width:250px;
+    height:220px;		    height:220px;
+    position:absolute;		    position:absolute;
+    left:-125px; top:20px;		    left:-125px; top:20px;
+    border:1px solid #B8B8B880;		    border:1px solid #B8B8B880;
+    border-radius: 5px;		    border-radius: 5px;
+    padding: 10px;		    padding: 10px;
+}		}
+#popup_proclist {		#popup_proclist {
+    display:none;		    display:none;
+    text-align: center;		    text-align: center;
+    background-color: #FDFDFD;		    background-color: #FDFDFD;
+    width:180px;		    width:180px;
+    max-height:200px;		    max-height:200px;
+    position:absolute;		    position:absolute;
+    left:-90px; top:50px;		    left:-90px; top:50px;
+    border:1px solid #B8B8B880;		    border:1px solid #B8B8B880;
+    border-radius: 5px;		    border-radius: 5px;
+    padding: 10px;		    padding: 10px;
+}		}
+#popup_proclist button {		#popup_proclist button {
+    display: block;		    display: block;
+    width: 100%;		    width: 100%;
+    height:
